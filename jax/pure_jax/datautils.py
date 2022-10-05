@@ -2,7 +2,6 @@ import numpy as np
 from torch.utils import data
 from torchvision.datasets import MNIST
 import jax.numpy as jnp
-from utils import one_hot
 
 import tensorflow_datasets as tfds   
 
@@ -50,4 +49,4 @@ class FlattenAndCast(object):
 
 
 mnist_dataset = MNIST('/tmp/mnist/', download=True, transform=FlattenAndCast())
-mnist_dataset_test = MNIST('/tmp/mnist/', download=True, train=False)
+mnist_dataset_test = MNIST('/tmp/mnist/', download=True, transform=FlattenAndCast(), train=False)
