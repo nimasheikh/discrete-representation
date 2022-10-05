@@ -3,6 +3,7 @@ import jax.numpy as jnp
 from jax import random
 from jax import grad, jit, vmap
 from jax.scipy.special import logsumexp
+from jax import nn
 # a simple MLP model
 
 def mlp_random_layer_params(m, n, key, scale=1e-2):
@@ -19,7 +20,7 @@ def mlop_predict(params, image):
   activations = image
   for w, b in params[:-1]:
     outputs = jnp.dot(w, activations) + b
-    activations = relu(outputs)
+    activations = nn.relu(outputs)
   
   final_w, final_b = params[-1]
   logits = jnp.dot(final_w, activations) + final_b
