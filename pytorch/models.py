@@ -20,18 +20,21 @@ class SimpMLP(nn.Module):
     def train(self):
         self.status="Train"
     
-    def representation(self, x):
+    def representation_rounded(self, x):
         rep = self.rep_layers(x)
         rep_ = torch.round(rep)
         err = rep - rep_
         return rep_, err
+    def representation(self, x):
+        return self.rep_layers(x)
+    
     def forward(self, x):
         rep = self.rep_layers(x)
         if self.status=='Train':
             noise = self.noise_var * torch.rand(rep.shape)
         elif self.status=='Test':
             noise = torch.zeros(rep.shape)
-            rep = torch.round(rep)
+
         rep_noisy = rep + noise
         logits = self.classification_layer(rep_noisy)
         return logits

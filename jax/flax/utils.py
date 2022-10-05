@@ -10,18 +10,6 @@ from models import CNN, simpleMLP
 
 model_class = simpleMLP
 
-def model_with_vec(vec, batch, value_tree):
-  """
-  A wrapper around the model which gets the parameters
-  in shape of a flat vector and turns them into a value_tree
-  and applies the model. 
-
-
-  This is usefulee since the gradients and hessian will be in
-  natural matrix form. 
-  """
-  
-  pass
 
 
 
